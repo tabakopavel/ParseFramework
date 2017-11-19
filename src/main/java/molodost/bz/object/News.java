@@ -45,6 +45,7 @@ public class News {
 
     public DBObject createDBObject() {
         BasicDBObjectBuilder docBuilder = BasicDBObjectBuilder.start();
+        docBuilder.append("newsID", getNewsId());
         docBuilder.append("title", getTitle());
         docBuilder.append("text", getText());
         docBuilder.append("authorName", getAuthorName());
@@ -117,8 +118,6 @@ public class News {
                         JsonObject userInfo = jsonElement1.getAsJsonObject();
                         news.setAuthorLink("https://platform.molodost.bz/@" + userInfo.get("name").toString().replace("\"", ""));
                         news.setAuthorName(userInfo.get("first_name").toString().replace("\"", "") + " " + userInfo.get("last_name").toString().replace("\"", ""));
-
-
                     }
                 }
                 newsList.add(news);

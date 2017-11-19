@@ -30,6 +30,7 @@ public class User {
     private String programID;
 
 
+
     public DBObject createDBObject() {
         BasicDBObjectBuilder docBuilder = BasicDBObjectBuilder.start();
         docBuilder.append("login", login);
@@ -154,5 +155,11 @@ public class User {
         return programID;
     }
 
+    public String getLogin() {
+        return login;
+    }
 
+    public String getPassword() {
+        return password;
+    }
 }

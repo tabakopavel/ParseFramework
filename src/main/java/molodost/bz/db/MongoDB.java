@@ -4,6 +4,9 @@ import com.mongodb.*;
 import molodost.bz.object.News;
 import molodost.bz.object.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MongoDB {
     private static final String MONGODB_LOCALHOST_27017 = "mongodb://localhost:27017";
     private static MongoClient mongoClient;
@@ -11,7 +14,7 @@ public class MongoDB {
     private DB db;
     private DBObject doc;
     private WriteResult result;
-    private DBCollection col;
+    private DBCollection dbCollection;
     private int time = 0;
 
     private MongoDB() {
@@ -26,28 +29,57 @@ public class MongoDB {
 
     }
 
-    public boolean checkNews(News news, String dataBaseName, String collectionName) {
-        if (time != 1) {
-            db = mongoClient.getDB(dataBaseName);
-            col = db.getCollection(collectionName);
-            time = 1;
-        }
-        DBObject query = BasicDBObjectBuilder.start().add("newsLink", news.getNewsLink()).get();
-        return col.find(query).count() == 0;
-    }
 
     public void addNews(News news, String dataBaseName, String collectionName) {
         db = mongoClient.getDB(dataBaseName);
-        col = db.getCollection(collectionName);
+        dbCollection = db.getCollection(collectionName);
         DBObject doc = news.createDBObject();
-        result = col.insert(doc);
+        result = dbCollection.insert(doc);
     }
 
+    public boolean checkNews(News news, String dataBaseName, String collectionName) {
+        if (time != 1) {
+            db = mongoClient.getDB(dataBaseName);
+            dbCollection = db.getCollection(collectionName);
+            time = 1;
+        }
+        DBObject query = BasicDBObjectBuilder.start().add("newsLink", news.getNewsLink()).get();
+        return dbCollection.find(query).count() == 0;
+    }
+
+
     public void addUserBot(User user, String dataBaseName, String collectionName) {
-        db = mongoClient.getDB(dataBaseName);
-        col = db.getCollection(collectionName);
-        DBObject doc = user.createDBObject();
-        result = col.insert(doc);
+        if (checkUserBot(user, dataBaseName, collectionName)) {
+            db = mongoClient.getDB(dataBaseName);
+            dbCollection = db.getCollection(collectionName);
+            DBObject doc = user.createDBObject();
+            result = dbCollection.insert(doc);
+        }
+    }
+
+    private boolean checkUserBot(User user, String dataBaseName, String collectionName) {
+        if (time != 1) {
+            db = mongoClient.getDB(dataBaseName);
+            dbCollection = db.getCollection(collectionName);
+            time = 1;
+        }
+        DBObject query = BasicDBObjectBuilder.start().add("login", user.getLogin()).get();
+        return dbCollection.find(query).count() == 0;
+    }
+
+    public List<User> getAllUserBots(String dataBaseName, String collectionName) {
+        List<User> usersBots = new ArrayList<>();
+        if (time != 1) {
+            db = mongoClient.getDB(dataBaseName);
+            dbCollection = db.getCollection(collectionName);
+            time = 1;
+        }
+        DBCursor cursor = dbCollection.find();
+        while (cursor.hasNext()) {
+            DBObject object = cursor.next();
+            usersBots.add(new User(object.get("login").toString(), object.get("password").toString()));
+        }
+        return usersBots;
     }
 
     public void close() {

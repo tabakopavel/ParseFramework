@@ -14,7 +14,6 @@ public class TestTestMain {
     public static void main(String[] args) throws IOException {
         MongoDB mongoDB = MongoDB.getConnection();
 
-
         mongoDB.addUserBot(new User("zinovenkov@gmail.com", "miramil2009"), "molodost", "userBots");
         mongoDB.addUserBot(new User("ivanovevgenits@yandex.ru", "6pr5GKH7k"), "molodost", "userBots");
         mongoDB.addUserBot(new User("jarkovevgenij@yandex.ru", "miramil2009"), "molodost", "userBots");
