@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Test-method Suite" parallel="classes" >
+    <test name="Test-method test" >
+        <classes>
+            <class name="test.ParseMolod2" />
+            <class name="test.ParseMolod3" />
+            <!--<class name="test.ParseMolod4" />-->
+        </classes>
+    </test>
+</suite>

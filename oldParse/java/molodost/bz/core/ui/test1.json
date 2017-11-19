@@ -1,0 +1,107 @@
+{
+  "departureLocation": {
+    "id": "00001:074",
+    "name": "Stockholm Central"
+  },
+  "viaLocation": null,
+  "arrivalLocation": {
+    "id": "00003:074",
+    "name": "Malm? C"
+  },
+  "journeyDate": {
+    "date": "2017-11-12"
+  },
+  "returnJourneyDate": null,
+  "minimumChangeoverTime": {
+    "days": "0",
+    "hours": "0",
+    "minutes": "0",
+    "duration": "0 seconds"
+  },
+  "consumers": [
+    {
+      "consumerCategory": {
+        "id": "VU",
+        "name": "Adult"
+      },
+      "discountCodeId": null,
+      "discountInstance": null,
+      "discountSecurity": null,
+      "loyaltyId": null,
+      "personCustomer": {
+        "id": null,
+        "personName": null
+      },
+      "selectedAge": null
+    }
+  ],
+  "pricingTokens": {
+    "STANDARD": {
+      "token": "EnjaY2JmYmYKCPJ0do13Dg0KcvVzjgSJMIWFgigskJnJ0NTQwMTE0MgABEBcE0NLc3NDEwgXAkvzMvMySzITczKrUlNQ9AMAbvcQDA",
+      "pricingTokenValidity": {
+        "timeSpanValidity": {
+          "startDate": {
+            "date": "2017-11-12"
+          },
+          "startTime": {
+            "time": "00:00"
+          },
+          "stopDate": {
+            "date": "2018-11-11"
+          },
+          "stopTime": {
+            "time": "23:59"
+          }
+        },
+        "salesCategoriesValidity": [
+          {
+            "transport": null,
+            "classType": "STANDARD",
+            "flexibility": null
+          },
+          {
+            "transport": null,
+            "classType": "COMFORT",
+            "flexibility": null
+          }
+        ]
+      }
+    },
+    "BASE": {
+      "token": "EnjaY2JmYmYKCPJ0do13cgx2BfGYwkJBFBbIzGRoamhgYmJoZAACIK6JoaW5uaEJhAuBpXmZeZklmYk5mVWpKSj6AeP0Drw",
+      "pricingTokenValidity": {
+        "timeSpanValidity": {
+          "startDate": {
+            "date": "2017-11-12"
+          },
+          "startTime": {
+            "time": "00:00"
+          },
+          "stopDate": {
+            "date": "2018-11-11"
+          },
+          "stopTime": {
+            "time": "23:59"
+          }
+        },
+        "salesCategoriesValidity": [
+          {
+            "transport": null,
+            "classType": "STANDARD",
+            "flexibility": null
+          },
+          {
+            "transport": null,
+            "classType": "COMFORT",
+            "flexibility": null
+          }
+        ]
+      }
+    }
+  },
+  "timetableToken": "EnjaYzIAAkMrA3MTZiYQ0xjCNDQ1NDAxMTQCCRkwMwHlgAQAnyYGXw",
+  "returnTimetableToken": null,
+  "promotionCode": null,
+  "cartToken": null,
+  "regionId": null
+}
