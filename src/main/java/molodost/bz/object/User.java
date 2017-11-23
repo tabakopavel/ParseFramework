@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,6 @@ public class User {
     private String userPageLink;
     private String cookie;
     private String programID;
-
 
 
     public DBObject createDBObject() {
@@ -80,6 +80,21 @@ public class User {
         return status;
     }
 
+    public int confirm(String code) throws IOException {
+        String httpsURL = "https://platform.molodost.bz/api/mongo/me/link/confirm";
+        URL myUrl = new URL(httpsURL);
+        HttpsURLConnection con = (HttpsURLConnection) myUrl.openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("Referer", "https://platform.molodost.bz/account/settings");
+        con.setRequestProperty("Cookie", cookie);
+        setStandartHeaders(con);
+        con.connect();
+        int status = con.getResponseCode();
+        con.disconnect();
+        return status;
+
+    }
+
     private void setParam(String json) {
         JsonParser parser = new JsonParser();
         JsonElement jsonTree = parser.parse(json);
@@ -113,7 +128,7 @@ public class User {
         con.setRequestProperty("Accept", "application/json, text/plain, */*");
         con.setRequestProperty("Host", "platform.molodost.bz");
         con.setRequestProperty("Connection", "keep-alive");
-        con.setRequestProperty("Content-Length", "2");
+        con.setRequestProperty("Content-Length", "15");
         con.setRequestProperty("Origin", "https://platform.molodost.bz");
         con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36");
         con.setRequestProperty("Content-Type", "application/json;charset=UTF-8");

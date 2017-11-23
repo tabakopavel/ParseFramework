@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainLike {
+
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Ooops, there is no arguments");
@@ -27,7 +28,12 @@ public class MainLike {
             for (User user : users) {
                 try {
                     System.out.println("Work as: " + user.getLogin());
-                    user.login();
+                    try {
+                        System.out.print(" " + user.login());
+                    } catch (NullPointerException e) {
+
+                    }
+//                    user.like(newsID);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

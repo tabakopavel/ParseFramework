@@ -62,6 +62,7 @@ public class MongoDB {
             db = mongoClient.getDB(dataBaseName);
             dbCollection = db.getCollection(collectionName);
             time = 1;
+            System.out.println(dbCollection.find().length());
         }
         DBObject query = BasicDBObjectBuilder.start().add("login", user.getLogin()).get();
         return dbCollection.find(query).count() == 0;
